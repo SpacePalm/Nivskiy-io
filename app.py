@@ -12,10 +12,10 @@ def index_route():
 def forgot_route():
     return render_template("./forgot.html")
 
+
 @app.route("/main")
 def main_page():
     return render_template("./main.html")
-
 
 
 if __name__ == "__main__":
