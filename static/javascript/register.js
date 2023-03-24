@@ -22,12 +22,12 @@ function login(){
     z.style.left = "0";
 
 }
-function forgot(){
-    window.location.href = 'forgot.html';
+async function forgot(){
+    window.location.href = "/forgot";
 }
 
 function checkreg(){
-    window.location.href = "index.html";
+    window.location.href = "/";
     alert("Chenging was successful");
    
     if(password = passwordConfirm){//запрос имеил с сервера
