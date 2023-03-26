@@ -25,29 +25,11 @@ function login(){
 function forgot(){
     window.location.href = '/forgot';
 }
+
+
+
 function backtomain(){
     window.location.href = "/main";
 }
-function addzan(){
-    window.location.href = "/addzan";
-
-}
-function addfood(){
-    window.location.href = "/addfood";
-}
-
-function checkreg(){
-    window.location.href = "/";
-    alert("Chenging was successful");
-   
-    if(password = passwordConfirm){//запрос имеил с сервера
-        alert("Chenging was successful");
-        
-            
-    }
-        //запрос на сервер хз как 
-}
-
-
 
 
