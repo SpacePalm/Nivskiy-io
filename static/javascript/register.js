@@ -22,8 +22,8 @@ function login(){
     z.style.left = "0";
 
 }
-async function forgot(){
-    window.location.href = "/forgot";
+function forgot(){
+    window.location.href = '/forgot';
 }
 
 function checkreg(){
@@ -38,7 +38,15 @@ function checkreg(){
         //запрос на сервер хз как 
 }
 
+function backtomain(){
+    window.location.href = "/main";
+}
+function addzan(){
+    window.location.href = "/addzan";
 
-
+}
+function addfood(){
+    window.location.href = "/addfood";
+}
 
 

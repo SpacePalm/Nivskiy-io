@@ -41,7 +41,7 @@
 #btn{
     top: 0;
     left: 0;
-    position: absolute;
+    display: contents;
     width: 110px;
     height: 100%;
     background: linear-gradient(to right, #ff105f, #ffad06);
@@ -71,7 +71,7 @@
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
-    display: block;
+    display: contents;
     margin: auto;
     background: linear-gradient(to right, #ff105f, #ffad06);
     border: 0;
@@ -133,6 +133,8 @@ span{
     position: flex;
     border-width: 10px;
     border-radius: 15px;
+    
+
 }
 .bottom-line{
     width: 100%;
@@ -167,7 +169,7 @@ span{
     display: inline-block;
     width: 20%; 
     height: 100%; 
-    margin: 21px 3%; 
+    margin: 12px 3%; 
     font-size: 1.4rem;
     color: #fff;
 }
@@ -199,6 +201,44 @@ span{
 }
 .info-line{
     width: 100%;
-    height: 12%;
-    margin: 0 auto;
+    height: 13%;
+    margin: 0;
+}
+.info-block{
+    width: 80%;
+    height: 10%;
+    margin: 10px auto;
+    position: relative;
+    border-radius: 30px;
+    background: #fff;
+}
+.kkal-block{
+    height: 30%;
+    margin: 2px 10px; 
+    width: 10%; 
+    font-size: 1.3rem;
+
+
+    
+}
+.eye-block{
+
+    background: url(../images/360.jpg) no-repeat;
+    background-size: cover; 
+    width: 30%; 
+    height: 100%; 
+    float: right; 
+    border-radius: 30px; 
+    margin: -2px 10px;
+    display: inline-block;
+}
+.border-block-line{
+    height: 90px;
+    width: 7px;
+    border-radius: 30px;
+    background: linear-gradient(to bottom, #ff105f, #ffad06);
+    position: absolute;
+    margin: 0 10%;
+    
+    
 }

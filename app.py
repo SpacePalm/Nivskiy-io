@@ -17,6 +17,10 @@ def forgot_route():
 def main_page():
     return render_template("./main.html")
 
+@app.route("/addfood")
+def add_food():
+    return render_template("./addfood.html")
+
 
 if __name__ == "__main__":
     app.run("0.0.0.0")
