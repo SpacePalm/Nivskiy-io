@@ -25,6 +25,16 @@ function login(){
 function forgot(){
     window.location.href = '/forgot';
 }
+function backtomain(){
+    window.location.href = "/main";
+}
+function addzan(){
+    window.location.href = "/addzan";
+
+}
+function addfood(){
+    window.location.href = "/addfood";
+}
 
 function checkreg(){
     window.location.href = "/";
@@ -38,15 +48,6 @@ function checkreg(){
         //запрос на сервер хз как 
 }
 
-function backtomain(){
-    window.location.href = "/main";
-}
-function addzan(){
-    window.location.href = "/addzan";
 
-}
-function addfood(){
-    window.location.href = "/addfood";
-}
 
 
