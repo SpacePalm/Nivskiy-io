@@ -9,8 +9,8 @@
         <div class = "form-box">
             <div class="button-box">
                 <div id = "btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Login</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                <button type="button" class="toggle-btn" id = "login-btn">Login</button>
+                <button type="button" class="toggle-btn" id = "register-btn">Register</button>
                 
 
             </div>
@@ -27,11 +27,12 @@
                 <input type = "checkbox" class="check-box"><span>I agree to the terms and conditions</span>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
-            <button type="button" class="bottom-button" onclick="forgot()">Forgot Password?</button>
+            <button type="button" class="bottom-button" id = "forgot">Forgot Password?</button>
 
         </div>
 
     </div>
+    <script src="../static/node_modules/jquery/dist/jquery.js"></script>
     <script src = "../static/javascript/register.js"></script>
 </body>
 </html>

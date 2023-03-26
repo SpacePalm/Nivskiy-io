@@ -1,3 +1,5 @@
-function backtomain(){
-    window.location.href = "/main";
-}
+$(document).ready(function(){
+    $("#addfood-btn").click(function(){
+        window.location.href = "/main.html";
+    });
+})

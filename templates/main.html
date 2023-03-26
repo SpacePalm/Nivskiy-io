@@ -15,8 +15,8 @@
                     <div class="head-text">Nevskiy io</div>
         
                     <input type = "text" id = "calendar" style="width: 300px; display: inline-block; "name="date" class="form-control datepicker-here" >
-                    <button type="submit" class="submit-btn" style="display: inline-block; width: 200px; background: #fff; margin: 15px;" onclick="addzan()">Add training</button>
-                    <button type="submit" class="submit-btn" style="display: inline-block; width: 200px; background: #fff;" onclick="addfood()">Add food</button>
+                    <button type="submit" class="submit-btn" style="display: inline-block; width: 200px; background: #fff; margin: 15px;" id="addzan-btn">Add training</button>
+                    <button type="submit" class="submit-btn" style="display: inline-block; width: 200px; background: #fff;" id="addfood-btn">Add food</button>
                 </form>                
 
             </div>
@@ -75,14 +75,13 @@
                 </div>
                 
             </div>
-            <button type="submit" class="change-btn" >Светл/темн тема</button>
-            <button type="submit" class="change-btn" style="margin: 5px 78%;" >Change password</button>
-    
+            <button type="submit" class="change-btn" id = "forgot">Change password</button>
 
         </div>
     </div>
-    <script src = "../static/javascript/main.js"></script>
     <script src="../static/node_modules/jquery/dist/jquery.js"></script>
+    <script src = "../static/javascript/main.js"></script>
+    
     <script src="../static/datepicker/js/datepicker.min.js"></script>
 </body>
 
