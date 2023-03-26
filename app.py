@@ -51,7 +51,7 @@ def change_password():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.change_password(data["username"], data["password"])
+    return {"ok": utils.change_password(data["username"], data["password"])}
 
 
 @app.route("/api/add_food", methods=['POST'])
