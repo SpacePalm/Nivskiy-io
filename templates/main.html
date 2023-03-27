@@ -8,73 +8,49 @@
          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
+<script src="../static/javascript/before_load_main.js"></script>
 
     <div class="hero">
         <div class="main-box">
 
             <div class = "top-line" >
 
-                <form style="margin:5px; width: 70%; display: inline"  >
+                <div style="margin:5px; width: 70%; display: inline"  >
                     <div class="head-text">Nevskiy io</div>
         
                     <input type = "text" id = "calendar" style="width: 300px; display: inline-block; "name="date" class="form-control datepicker-here">
 
 
-                </form>
-                 <button type="submit" class="submit-btn" style="display: inline; width: 200px; background: #fff; margin: 15px;" id="addzan-btn">Add training</button>
-                 <button type="submit" class="submit-btn" style="display: inline; width: 200px; background: #fff;" id="addfood-btn">Add food</button>
+                </div>
+                <button class="submit-btn" style="display: inline; width: 200px; background: #fff; margin: 15px;" id="show-btn">Show</button>
+                 <button class="submit-btn" style="display: inline; width: 200px; background: #fff; margin: 15px;" id="addzan-btn">Add training</button>
+                 <button class="submit-btn" style="display: inline; width: 200px; background: #fff;" id="addfood-btn">Add food</button>
+
 
             </div>
             <div class = "bottom-line">
-                <div class = "info-case" style="overflow-y: auto; background-image: url(../static/images/1667684854_1-sportishka-com-p-aleksandr-nevskii-bodibilding-oboi-1.jpg); background-size: cover; " >
+                <div id="food-table" class = "info-case" style="overflow-y: auto; background-image: url(../static/images/1667684854_1-sportishka-com-p-aleksandr-nevskii-bodibilding-oboi-1.jpg); background-size: cover; " >
                     <br>
                     <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
+
                 </div>
                 <div class="border-block"></div>
-                <div class = "info-case" style="overflow-y: auto;background: url(../static/images/2531.jpg) no-repeat; background-size: cover;">
+                <div id="train-table" class = "info-case" style="overflow-y: auto;background: url(../static/images/2531.jpg) no-repeat; background-size: cover;">
                     <br>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
-                    <div class="info-block">888</div>
                     <div class="info-block">888</div>
                 </div>
                 <div class="border-top-block"></div>
                 <br>
                 <div class="info-line">
                     <div class="eye-block"></div>
-                    <div class="kkal-block" style="height: 30px; margin: 25px 11%; position: absolute;" >101000 kkal</div>
+                    <div class="kkal-block" id="last-kkal" style="height: 30px; margin: 25px 11%; position: absolute;" >last kkal: 0</div>
                     <div class="border-block-line"></div>
                    
-                    <div class="kkal-block">b: 100</div>
-                    <div class="kkal-block">j: 100</div>
-                    <div class="kkal-block">u: 100</div>
+                    <div class="kkal-block" id="summ-b">b: 0</div>
+                    <div class="kkal-block" id="summ-j">j: 0</div>
+                    <div class="kkal-block" id="summ-u">u: 0</div>
                     <div class="border-block-line" style="margin: -95px 22%; position: absolute;"></div>
-                    <div class="kkal-block" style="height: 60px; margin: -65px 23%; position: absolute; width: 44%;" >101000 kkal</div>
+                    <div class="kkal-block" id="sum-kkal" style="height: 60px; margin: -65px 23%; position: absolute; width: 44%;" >total kkal: 0 </div>
                     <div class="border-block-line" style="margin: -95px 68%; position: absolute;"></div>
                     
                 </div>
@@ -85,8 +61,9 @@
         </div>
     </div>
     <script src="../static/node_modules/jquery/dist/jquery.js"></script>
+<script src="../static/datepicker/js/datepicker.min.js"></script>
     <script src = "../static/javascript/main.js"></script>
-    <script src="../static/datepicker/js/datepicker.min.js"></script>
+
 </body>
 
 </html>

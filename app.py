@@ -59,7 +59,7 @@ def api_add_food():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.add_food(data["id"], data["food"])
+    return {"ok": utils.add_food(data["id"], data["food"], data["date"])}
 
 
 @app.route("/api/add_train", methods=['POST'])
@@ -67,7 +67,7 @@ def api_add_train():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.add_train(data["id"], data["train"])
+    return {"ok": utils.add_train(data["id"], data["train"], data["date"])}
 
 
 @app.route("/api/remove_train", methods=['POST'])
@@ -75,7 +75,7 @@ def api_remove_train():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.remove_train(data["id"], data["train"])
+    return utils.remove_train(data["id"], data["train"], data["date"])
 
 
 @app.route("/api/remove_food", methods=['POST'])
@@ -83,7 +83,7 @@ def api_remove_food():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.remove_food(data["id"], data["food"])
+    return utils.remove_food(data["id"], data["food"], data["date"])
 
 
 @app.route("/api/get_trains", methods=['POST'])
@@ -91,7 +91,7 @@ def api_get_trains():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.get_trains(data["id"])
+    return utils.get_trains(data["id"], data["date"])
 
 
 @app.route("/api/get_food", methods=['POST'])
@@ -99,7 +99,7 @@ def api_get_food():
     if not request.data:
         raise Exception
     data = json.loads(request.data)
-    return utils.get_food(data["id"])
+    return utils.get_food(data["id"], data["date"])
 
 
 if __name__ == "__main__":

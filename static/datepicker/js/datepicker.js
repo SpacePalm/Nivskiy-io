@@ -445,6 +445,7 @@
 
 
         selectDate: function (date) {
+            this.$el.change()
             var _this = this,
                 opts = _this.opts,
                 d = _this.parsedDate,
@@ -697,6 +698,7 @@
             value = value.join(this.opts.multipleDatesSeparator);
 
             this.$el.val(value)
+
         },
 
         /**

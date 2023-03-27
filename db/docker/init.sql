@@ -1,6 +1,4 @@
--- Table: public.food
-
--- DROP TABLE IF EXISTS public.food;
+CREATE SEQUENCE auth_id_seq;
 
 -- Table: public.food
 
@@ -26,7 +24,6 @@ CREATE TABLE IF NOT EXISTS public.auth
 (
     username character(20) COLLATE pg_catalog."default" NOT NULL,
     password character(20) COLLATE pg_catalog."default" NOT NULL,
-    key character(30) COLLATE pg_catalog."default" NOT NULL,
     id integer NOT NULL DEFAULT nextval('auth_id_seq'::regclass),
     CONSTRAINT auth_pkey PRIMARY KEY (id)
 )

@@ -1,10 +1,12 @@
 import psycopg2
 import json
+from datetime import datetime
 
 with open("db/db.json") as read_json:
     properties = json.load(read_json)["db"]
 
 CONN = conn = psycopg2.connect(properties)
+FORMAT_STRING = "%d.%m.%Y"
 
 
 def check_user(username: str, password: str) -> dict:
@@ -13,15 +15,18 @@ def check_user(username: str, password: str) -> dict:
     :return: dict {id: int, correct: True/False}
     """
     cursor = CONN.cursor()
-
-    cursor.execute("""
-    SELECT password, id FROM auth
-    WHERE username = %s
-    """, (username,))
-    fetched = cursor.fetchall()[0]
-    if fetched[0].strip() == password:
-        return {"id": fetched[1],
-                "correct": True}
+    try:
+        cursor.execute("""
+        SELECT password, id FROM auth
+        WHERE username = %s
+        """, (username,))
+        fetched = cursor.fetchall()[0]
+        if fetched[0].strip() == password:
+            cursor.close()
+            return {"id": fetched[1],
+                    "correct": True}
+    except:
+        cursor.close()
 
 
 def register(username, password):
@@ -53,12 +58,12 @@ def register(username, password):
     cursor.execute("""
            INSERT INTO food (id, food)
            values (%s, %s)
-           """, (user_id, json.dumps({"food": []})))
+           """, (user_id, json.dumps({})))
 
     cursor.execute("""
                INSERT INTO trains (id, trains)
                values (%s, %s)
-                """, (user_id, json.dumps({"trains": []})))
+                """, (user_id, json.dumps({})))
 
     CONN.commit()
     cursor.close()
@@ -90,7 +95,15 @@ def change_password(username, password):
     return True
 
 
-def add_food(user_id, food):
+def add_food(user_id, food, date):
+    """
+    :param user_id: int
+    :param food: str
+    :param date: format - day.month.year
+    :return: bool
+    """
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
+
     cursor = CONN.cursor()
 
     cursor.execute("""
@@ -101,7 +114,12 @@ def add_food(user_id, food):
     fetched = cursor.fetchall()
     if fetched:
         old_food = fetched[0][0]
-        old_food["food"].append(food)
+
+        if timestamp in old_food.keys():
+            old_food[timestamp].append(food)
+
+        else:
+            old_food[timestamp] = [food]
         cursor.execute("""
                   UPDATE food 
                   SET food = %s
@@ -113,8 +131,10 @@ def add_food(user_id, food):
     cursor.close()
     return False
 
-def remove_food(user_id, food):
+
+def remove_food(user_id, food, date):
     cursor = CONN.cursor()
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
 
     cursor.execute("""
               SELECT food FROM food
@@ -124,21 +144,25 @@ def remove_food(user_id, food):
     fetched = cursor.fetchall()
     if fetched:
         old_food = fetched[0][0]
-        old_food["food"].remove(food)
+        if timestamp in old_food.keys():
+            old_food[timestamp].remove(food)
         cursor.execute("""
-                  UPDATE food 
-                  SET food = %s
-                  WHERE id = %s
-                  """, (json.dumps(old_food), user_id))
+                      UPDATE food 
+                      SET food = %s
+                      WHERE id = %s
+                      """, (json.dumps(old_food), user_id))
         CONN.commit()
         cursor.close()
         return True
+
     cursor.close()
     return False
 
 
-def add_train(user_id, train):
+def add_train(user_id, train, date):
     cursor = CONN.cursor()
+
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
 
     cursor.execute("""
                   SELECT trains FROM trains
@@ -148,7 +172,10 @@ def add_train(user_id, train):
     fetched = cursor.fetchall()
     if fetched:
         old_trains = fetched[0][0]
-        old_trains["trains"].append(train)
+        if timestamp in old_trains.keys():
+            old_trains[timestamp].append(train)
+        else:
+            old_trains[timestamp] = [train]
         cursor.execute("""
                       UPDATE trains 
                       SET trains = %s
@@ -160,8 +187,10 @@ def add_train(user_id, train):
     cursor.close()
     return False
 
-def remove_train(user_id, train):
+
+def remove_train(user_id, train, date):
     cursor = CONN.cursor()
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
 
     cursor.execute("""
                   SELECT trains FROM trains
@@ -171,6 +200,8 @@ def remove_train(user_id, train):
     fetched = cursor.fetchall()
     if fetched:
         old_trains = fetched[0][0]
+        if timestamp in old_trains.keys():
+            old_trains[timestamp].remove(train)
         old_trains["trains"].remove(train)
         cursor.execute("""
                       UPDATE trains 
@@ -183,8 +214,10 @@ def remove_train(user_id, train):
     cursor.close()
     return False
 
-def get_trains(user_id):
+
+def get_trains(user_id, date):
     cursor = CONN.cursor()
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
 
     cursor.execute("""
                       SELECT trains FROM trains
@@ -193,12 +226,14 @@ def get_trains(user_id):
 
     fetched = cursor.fetchall()
 
-    if fetched:
-        return fetched[0][0]["trains"]
+    if fetched[0][0].get(timestamp):
+        return fetched[0][0][timestamp]
+    return []
 
-def get_food(user_id):
+
+def get_food(user_id, date):
     cursor = CONN.cursor()
-
+    timestamp = str(datetime.strptime(date, FORMAT_STRING).timestamp())
     cursor.execute("""
                       SELECT food FROM food
                       WHERE id = %s
@@ -206,5 +241,6 @@ def get_food(user_id):
 
     fetched = cursor.fetchall()
 
-    if fetched:
-        return fetched[0][0]["food"]
+    if fetched[0][0].get(timestamp):
+        return fetched[0][0][timestamp]
+    return []
